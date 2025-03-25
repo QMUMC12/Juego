@@ -1,0 +1,41 @@
+import random
+
+def juego():
+    opciones = ["piedra", "papel", "tijera"]
+
+    while True:
+        computadora = random.choice(opciones)
+        usuario = input("Elige: piedra, papel o tijera (o 'salir' para terminar): ").strip().lower()
+
+        if usuario == "salir":
+            print("¡Gracias por jugar!")
+            exit()
+
+        if usuario not in opciones:
+            print("Error: Opción no válida")
+            continue
+
+    
+        if not usuario.isalpha():
+            print("Solo letras")
+            continue
+ 
+        print("La computadora eligió: ", computadora)
+
+        if usuario == computadora:
+            print("Empate!")
+        
+        elif (usuario == "piedra" and computadora == "tijera") or \
+         (usuario == "tijera" and computadora == "papel") or \
+         (usuario == "papel" and computadora == "piedra"):
+            print("Ganaste!")
+        else:
+            print("Perdiste!")
+
+    input("\nPresiona Enter para volver al menú...")
+
+        
+while True:
+    juego()
+
+   
