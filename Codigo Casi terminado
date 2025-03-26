@@ -1,9 +1,30 @@
 import random
+# Función para validar que el usuario solo ingrese letras
+def validar_letras(entrada):
+    return entrada.isalpha()  # Verifica si solo contiene letras
 
+# Función para validar que la opción ingresada sea piedra, papel o tijera
+def validar_opcion(opcion):
+    opciones_validas = ["piedra", "papel", "tijera"]
+    return opcion in opciones_validas  # Retorna True si está en la lista
+
+# Función del juego con el sistema de 2 de 3 partidas
 def juego():
     opciones = ["piedra", "papel", "tijera"]
+    usuario_puntos = 0
+    computadora_puntos = 0
 
-    while True:
+    while usuario_puntos < 2 and computadora_puntos < 2:  # El primero en ganar 2 veces, gana el juego
+        usuario = input("Elige: piedra, papel o tijera: ").strip().lower()  # Se usa strip para quitar espacios
+
+        if not validar_letras(usuario):  # Validamos que solo sean letras
+            print("Solo letras.")
+            continue  # Vuelve a pedir la opción
+
+        if not validar_opcion(usuario):  # Validamos que sea una opción correcta
+            print("Solo puedes elegir piedra, papel o tijera.")
+            continue  # Vuelve a pedir la opción
+
         computadora = random.choice(opciones)
         usuario = input("Elige: piedra, papel o tijera (o 'salir' para terminar): ").strip().lower()
 
