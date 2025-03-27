@@ -1,12 +1,32 @@
 import random
 
+def validar_letras(entrada):
+    return entrada.isalpha()  
+
+
+def validar_opcion(opcion):
+    opciones_validas = ["piedra", "papel", "tijera"]
+    return opcion in opciones_validas  
+
+
 def juego():
     opciones = ["piedra", "papel", "tijera"]
+    usuario_puntos = 0
+    computadora_puntos = 0
 
-    while True:
+
+    while usuario_puntos < 2 and computadora_puntos < 2: 
+        usuario = input("Elige: piedra, papel o tijera: ").strip().lower()  
+
+        if not validar_letras(usuario):  
+            print("Solo letras.")
+            continue  
+
+        if not validar_opcion(usuario):  
+            print("Solo puedes elegir piedra, papel o tijera.")
+            continue  
+
         computadora = random.choice(opciones)
-        usuario = input("Elige: piedra, papel o tijera (o 'salir' para terminar): ").strip().lower()
-
         if usuario == "salir":
             print("¡Gracias por jugar!")
             exit()
@@ -34,8 +54,20 @@ def juego():
 
     input("\nPresiona Enter para volver al menú...")
 
-        
-while True:
-    juego()
+def mostrar_menu():
+    while True:
+            print("1.juego")
+            print("2 salir")
+    
+            opcion = input("Elige una opcion:")
+
+            if opcion == "1":
+              juego()
+
+            elif opcion == "2":
+                print("Gracias por jugar")
+                exit()
+
+mostrar_menu()
 
    
