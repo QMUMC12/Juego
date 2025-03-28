@@ -1,0 +1,78 @@
+import random
+
+def validar_letras(entrada):
+    return entrada.isalpha()
+
+
+def validar_opcion(opcion):
+    opciones_validas = ["piedra", "papel", "tijera"]
+    return opcion in opciones_validas
+
+
+def juego():
+    opciones = ["piedra", "papel", "tijera"]
+    usuario_puntos = 0
+    computadora_puntos = 0
+
+
+    def juego():
+        usuario_puntos = 0
+        computadora_puntos = 0
+        opciones = ["piedra", "papel", "tijera"]
+    
+    while True:
+        print(f"\nMarcador: Tú {usuario_puntos} - PC {computadora_puntos}")
+        usuario = input("Elige (piedra/papel/tijera) o 'salir': ").strip().lower()
+        
+        
+        if usuario == "salir":
+            return 
+        
+    
+        if not validar_letras(usuario):
+            print("Error: Solo se permiten letras")
+            continue
+            
+        if not validar_opcion(usuario):
+            print("Error: Opción no válida")
+            continue
+        
+        
+        computadora = random.choice(opciones)
+        print(f"\nLa computadora eligió: {computadora}")
+        
+        if usuario == computadora:
+            print("¡Empate!")
+        elif (usuario == "piedra" and computadora == "tijera") or \
+             (usuario == "tijera" and computadora == "papel") or \
+             (usuario == "papel" and computadora == "piedra"):
+            usuario_puntos += 1
+            print("¡Ganaste esta ronda!")
+        else:
+            computadora_puntos += 1
+            print("¡Perdiste esta ronda!")
+        
+        
+        if usuario_puntos >= 3:
+            print("\n Felicidades ganastes")
+            input("Presiona Enter para continuar...")
+            return
+        elif computadora_puntos >= 3:
+            print("\n¡No ganastes el juego!")
+            input("Presiona Enter para continuar...")
+            return    
+def mostrar_menu():
+    while True:
+            print("1.juego")
+            print("2 salir")
+    
+            opcion = input("Elige una opcion:")
+
+            if opcion == "1":
+              juego()
+
+            elif opcion == "2":
+                print("Gracias por jugar")
+                exit()
+
+mostrar_menu()
